@@ -1,4 +1,5 @@
 #include "../include/node.h"  
+#include <stdio.h>
 
 float getDensity(struct Node *node){
   return node->density;
@@ -43,4 +44,15 @@ struct Node NodeConstructor(enum Name name, float dens, float xSp, float ySp){
   node.xSpeed = xSp;
   node.ySpeed = ySp;
   return node;
+}
+void printNode(struct Node *node) {
+    // Get the node's name using the getName function
+    char* name = getName(node);
+
+    // Print the node's properties
+    printf("Node Information:\n");
+    printf("Name: %s\n", name);
+    printf("Density: %.2f\n", node->density);
+    printf("X Speed: %.2f\n", node->xSpeed);
+    printf("Y Speed: %.2f\n", node->ySpeed);
 }

@@ -1,14 +1,11 @@
 #include "../include/node.h"
-#include "../include/chunk.h"
-#include <stdio.h>
+#include "../include/board.h"
 
 int main(int argc, char *argv[])
 {
   struct Node node = NodeConstructor(WOOD, 12, 2, 3);
-  printf("%s\n", getName(&node));
-  struct Chunk chunk = ChunkConstructor();
-  setNode(&chunk, &node, 0, 0);
-  struct Node *gotNode = getNode(&chunk, 0, 0);
-  printf("%s\n", getName(gotNode));
-  printf("\n");
+  struct Board board = BoardConstructor();
+  setNodeBoard(&board, &node, 100, 50);
+  struct Node nodeGotten = *getNodeBoard(&board, 100, 50);
+  printNode(&nodeGotten);
 } 

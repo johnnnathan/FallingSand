@@ -11,6 +11,7 @@ struct Node{
 };
 
 
+void printNode(struct Node *node);
 float getDensity(struct Node *node);
 char* getName(struct Node *node);
 float getYSpeed(struct Node *node);

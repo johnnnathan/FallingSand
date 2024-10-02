@@ -11,7 +11,7 @@ struct Chunk {
 };
 
 struct Chunk ChunkConstructor();
-void setNode(struct Chunk *chunk, struct Node *node, int col, int row);
+int setNode(struct Chunk *chunk, struct Node *node, int col, int row);
 struct Node *getNode(struct Chunk *chunk, int col, int row);
 
 #endif // !CHUNK_H

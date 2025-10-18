@@ -3,9 +3,9 @@
 
 int main(int argc, char *argv[])
 {
-  struct Node node = NodeConstructor(WOOD, 12, 2, 3);
-  struct Board board = BoardConstructor();
-  setNodeBoard(&board, &node, 100, 50);
-  struct Node nodeGotten = *getNodeBoard(&board, 100, 50);
-  printNode(&nodeGotten);
+  struct Node node = create_node(WOOD, 12, 2, 3);
+  struct Board board = create_board();
+  board_set_node(&board, &node, 100, 50);
+  struct Node nodeGotten = *board_get_node(&board, 100, 50);
+  print_node(&nodeGotten);
 } 

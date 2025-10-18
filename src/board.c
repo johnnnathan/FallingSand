@@ -2,7 +2,7 @@
 #include <math.h>
 #include <stdio.h>
 
-int setNodeBoard(struct Board *board, struct Node *node, int col, int row){
+int board_set_node(struct Board *board, struct Node *node, int col, int row){
 
   int total = (STANDARD_CHUNK_SIZE * ((int)STANDARD_CHUNK_COUNT/3))-1;
   if ((row < 0 || row > total) || (col < 0 || col > total)){
@@ -19,16 +19,16 @@ int setNodeBoard(struct Board *board, struct Node *node, int col, int row){
 }
 
 
-struct Board BoardConstructor(){
+struct Board create_board(){
   struct Board board;
   struct Chunk* chunkArray[9];
   for (int i = 0; i < 9; i ++){
-    struct Chunk chunk = ChunkConstructor();
+    struct Chunk chunk = create_chunk();
     board.board[(int) i / 3][i % 3] = chunk;
   }
   return board;
 }
-struct Node *getNodeBoard(struct Board *board, int col, int row){
+struct Node *board_get_node(struct Board *board, int col, int row){
 
   int total = (STANDARD_CHUNK_SIZE * ((int)STANDARD_CHUNK_COUNT/3))-1;
 
@@ -43,5 +43,5 @@ struct Node *getNodeBoard(struct Board *board, int col, int row){
   col = (int)floor(col / STANDARD_CHUNK_SIZE);
 
 
-  return getNode(&board->board[row][col], colChunk, rowChunk);
+  return chunk_get_node(&board->board[row][col], colChunk, rowChunk);
 }

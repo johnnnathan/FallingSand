@@ -1,15 +1,16 @@
 #include "../include/node.h"  
 #include <stdio.h>
 
-float getDensity(struct Node *node){
+float get_density(struct Node *node){
   return node->density;
 }
 
 
-char* getName(struct Node *node){
-  int nameCode = node->name;
+//Get the ascii representation of the name of the material, should not be used often.
+char* get_name(struct Node *node){
   char* name;
-  switch (nameCode) {
+  int name_code = node->name;
+  switch (name_code) {
     case 0:
       name = "air";
       break;
@@ -28,16 +29,16 @@ char* getName(struct Node *node){
   return name;
 }
 
-float getYSpeed(struct Node *node){
+float get_dy(struct Node *node){
   return node->ySpeed;
 }
 
-float getXSpeed(struct Node *node){
+float get_dx(struct Node *node){
   return node->xSpeed;
 }
 
 
-struct Node NodeConstructor(enum Name name, float dens, float xSp, float ySp){
+struct Node create_node(enum Name name, float dens, float xSp, float ySp){
   struct Node node;
   node.name = name;
   node.density = dens;
@@ -45,9 +46,9 @@ struct Node NodeConstructor(enum Name name, float dens, float xSp, float ySp){
   node.ySpeed = ySp;
   return node;
 }
-void printNode(struct Node *node) {
+void print_node(struct Node *node) {
     // Get the node's name using the getName function
-    char* name = getName(node);
+    char* name = get_name(node);
 
     // Print the node's properties
     printf("Node Information:\n");

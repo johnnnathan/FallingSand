@@ -10,8 +10,8 @@ struct Chunk {
   struct Node* chunk[STANDARD_CHUNK_SIZE][STANDARD_CHUNK_SIZE];
 };
 
-struct Chunk ChunkConstructor();
-int setNode(struct Chunk *chunk, struct Node *node, int col, int row);
-struct Node *getNode(struct Chunk *chunk, int col, int row);
+struct Chunk create_chunk();
+int chunk_set_node(struct Chunk *chunk, struct Node *node, int col, int row);
+struct Node *chunk_get_node(struct Chunk *chunk, int col, int row);
 
 #endif // !CHUNK_H

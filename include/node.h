@@ -11,12 +11,12 @@ struct Node{
 };
 
 
-void printNode(struct Node *node);
-float getDensity(struct Node *node);
-char* getName(struct Node *node);
-float getYSpeed(struct Node *node);
-float getXSpeed(struct Node *node);
-struct Node NodeConstructor(enum Name name, float dens, float xSp, float ySp);
+void print_node(struct Node *node);
+float get_density(struct Node *node);
+char* get_name(struct Node *node);
+float get_dy(struct Node *node);
+float get_dx(struct Node *node);
+struct Node create_node(enum Name name, float dens, float xSp, float ySp);
 
 
 #endif // !NODE_H

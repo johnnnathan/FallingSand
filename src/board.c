@@ -1,47 +1,36 @@
 #include "../include/board.h"
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-int board_set_node(struct Board *board, struct Node *node, int col, int row){
+int set_node(struct Board *board, struct Node *node, int col, int row){
 
-  int total = (STANDARD_CHUNK_SIZE * ((int)STANDARD_CHUNK_COUNT/3))-1;
-  if ((row < 0 || row > total) || (col < 0 || col > total)){
-    printf("Row: %d or Col: %d out of range for value %d", row, col, STANDARD_CHUNK_SIZE*(STANDARD_CHUNK_COUNT/3));
+  if ((row < 0 || row > HEIGHT - 1) || (col < 0 || col > WIDTH - 1)){
+    printf("Row: %d or Col: %d out of range for value %d/%d", row, col, HEIGHT, WIDTH);
     return 1;
   }
-  int rowChunk = row % STANDARD_CHUNK_SIZE;
-  int colChunk = col % STANDARD_CHUNK_SIZE;
-  row = (int)floor(row / STANDARD_CHUNK_SIZE);
-  col = (int)floor(col / STANDARD_CHUNK_SIZE);
 
-  board->board[row][col].chunk[rowChunk][colChunk] = node;
+  board->board[col + (HEIGHT * row)] = *node;
   return 0;
 }
 
 
 struct Board create_board(){
   struct Board board;
-  struct Chunk* chunkArray[9];
-  for (int i = 0; i < 9; i ++){
-    struct Chunk chunk = create_chunk();
-    board.board[(int) i / 3][i % 3] = chunk;
+  board.board = malloc(WIDTH*HEIGHT*sizeof(struct Node));
+  if (!board.board){
+    fprintf(stderr, "FAILED BOARD ALLOCATION\n");
+    exit(1);
   }
   return board;
 }
-struct Node *board_get_node(struct Board *board, int col, int row){
 
-  int total = (STANDARD_CHUNK_SIZE * ((int)STANDARD_CHUNK_COUNT/3))-1;
+struct Node *get_node(struct Board *board, int col, int row){
 
-  if ((row < 0 || row > total) || (col < 0 || col > total)){
-    printf("Row: %d or Col: %d out of range for value %d", row, col, STANDARD_CHUNK_SIZE*(STANDARD_CHUNK_COUNT/3));
+  if ((row < 0 || row > HEIGHT - 1) || (col < 0 || col > WIDTH - 1)){
+    printf("Row: %d or Col: %d out of range for value %d/%d", row, col, HEIGHT, WIDTH);
     return (void *)0;
   }
+  return &board->board[col + (HEIGHT * row)];
 
-  int rowChunk = row % STANDARD_CHUNK_SIZE;
-  int colChunk = col % STANDARD_CHUNK_SIZE;
-  row = (int)floor(row / STANDARD_CHUNK_SIZE);
-  col = (int)floor(col / STANDARD_CHUNK_SIZE);
-
-
-  return chunk_get_node(&board->board[row][col], colChunk, rowChunk);
 }
